@@ -1,0 +1,128 @@
+[
+  {
+    "page": 2,
+    "required": true,
+    "name": "full_name",
+    "type": "text",
+    "placeholder": "Your full name"
+  },
+  {
+    "page": 2,
+    "required": true,
+    "name": "email",
+    "type": "email",
+    "placeholder": "Email"
+  },
+  {
+    "page": 3,
+    "name": "message",
+    "type": "textarea",
+    "placeholder": "What is your favorite ice cream flavor?"
+  },
+  {
+    "page": 3,
+    "required": true,
+    "name": "radioChoice",
+    "question": "If you had to choose, which would you prefer?",
+    "type": "radio",
+    "options": [
+      {
+        "value": 1,
+        "label": "Eat one of those Hotlix Scorpion Lollipops"
+      },
+      {
+        "value": 2,
+        "label": "Sleep in mud for a week"
+      },
+      {
+        "value": 3,
+        "label": "Watch creepy movies while in a tent alone in the woods"
+      }
+    ]
+  },
+  {
+    "page": 3,
+    "name": "checkboxChoice",
+    "question": "What is your favorite time of day to sleep? Choose all that apply.",
+    "type": "checkbox",
+    "options": [
+      {
+        "value": 1,
+        "label": "Night"
+      },
+      {
+        "value": 2,
+        "label": "Morning"
+      },
+      {
+        "value": 3,
+        "label": "Afternoon"
+      },
+      {
+        "value": 4,
+        "label": "After a meal"
+      },
+      {
+        "value": 5,
+        "label": "Any time's a good time to sleep"
+      }
+    ]
+  },
+  {
+    "page": 3,
+    "name": "mySelection",
+    "question": "Select your ideal vacation continent out of the choices given.",
+    "type": "select",
+    "options": [
+      {
+        "value": 1,
+        "label": "South America"
+      },
+      {
+        "value": 2,
+        "label": "Africa"
+      },
+      {
+        "value": 3,
+        "label": "Asia"
+      },
+      {
+        "value": 4,
+        "label": "North America - keepin' it close to home"
+      },
+      {
+        "value": 5,
+        "label": "Europe"
+      },
+      {
+        "value": 6,
+        "label": "Antarctica"
+      },
+      {
+        "value": 7,
+        "label": "Australia"
+      }
+    ]
+  },
+  {
+    "page": 3,
+    "name": "multipleSelection",
+    "question": "How much wood could a woodchuck chuck if a woodchuck could chuck wood? Select all that apply.",
+    "type": "select",
+    "multiple": true,
+    "options": [
+      {
+        "value": 1,
+        "label": "He can't so what's the point in answering?"
+      },
+      {
+        "value": 2,
+        "label": "A woodchuck would chuck all the would he could chuck."
+      },
+      {
+        "value": 3,
+        "label": "I just learned a woodchuck is not a bird, but a groundhog. I blame this on Woody the Woodpecker."
+      }
+    ]
+  }
+]
