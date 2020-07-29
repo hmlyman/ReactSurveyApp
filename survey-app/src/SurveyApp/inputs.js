@@ -43,6 +43,7 @@ export const SurveyRadioInput = (props) => {
           <div key={`${object.type}-${index}`}>
             <input
               className="form-check-input"
+              required={object.required}
               type={object.type}
               value={data.value}
               name={object.name}

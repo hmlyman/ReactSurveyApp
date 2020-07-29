@@ -92,7 +92,7 @@ export const Survey = (props) => {
             />
           ) : obj.type === "select" ? (
             <SurveySelectInput
-              className="form-control mb-3"
+              className="form-control mb-3 mt-3"
               question={obj.question}
               required={props.required}
               object={obj}
@@ -101,7 +101,7 @@ export const Survey = (props) => {
             />
           ) : (
             <SurveyTextInput
-              className="mb-3 form-control"
+              className="mb-3 mt-3 form-control"
               type={obj.type}
               question={props.question}
               required={props.required}
