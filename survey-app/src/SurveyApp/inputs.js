@@ -78,8 +78,14 @@ export const SurveyTextInput = (props) => {
     name: props.name ? props.name : `${inputType}_${props.key}`,
   };
   return inputType === "textarea" ? (
-    <textarea {...inputProps} />
+    <>
+      <h2>{props.question}</h2>
+      <textarea {...inputProps} />
+    </>
   ) : (
-    <input {...inputProps} />
+    <>
+      <h2>{props.question}</h2>
+      <input {...inputProps} />
+    </>
   );
 };
