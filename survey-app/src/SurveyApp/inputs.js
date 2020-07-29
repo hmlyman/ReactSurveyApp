@@ -6,41 +6,42 @@ export const SurveySelectInput = (props) => {
   const { object } = props;
 
   return (
-    <select
-      name={object.name}
-      question={props.question}
-      className={props.className}
-      multiple={object.multiple}
-    >
-      <option hidden value>
-        Select one
-      </option>
-      {object.options.map((data, index) => {
-        return (
-          <option
-            question={props.question}
-            value={data.value}
-            id={`${object.name}-${index}`}
-            key={`${object.type}-${index}`}
-            className={`form-check ${props.optionClassName}`}
-          >
-            {data.label}
-          </option>
-        );
-      })}
-    </select>
+    <>
+      <h2>{props.question}</h2>
+      <select
+        name={object.name}
+        className={props.className}
+        multiple={object.multiple}
+      >
+        <option hidden value>
+          Select one
+        </option>
+        {object.options.map((data, index) => {
+          return (
+            <option
+              value={data.value}
+              id={`${object.name}-${index}`}
+              key={`${object.type}-${index}`}
+              className={`form-check ${props.optionClassName}`}
+            >
+              {data.label}
+            </option>
+          );
+        })}
+      </select>
+    </>
   );
 };
 
 export const SurveyRadioInput = (props) => {
-  const { object } = props;
+  const { object, question } = props;
   return (
     <div className={`form-check ${props.className}`}>
+      <h2>{question}</h2>
       {object.options.map((data, index) => {
         return (
           <div key={`${object.type}-${index}`}>
             <input
-              question={props.question}
               className="form-check-input"
               type={object.type}
               value={data.value}

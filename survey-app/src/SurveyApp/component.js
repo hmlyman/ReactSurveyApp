@@ -23,12 +23,12 @@ export const Survey = (props) => {
       const verifyType = verifyTextInputType(formInput.type);
       if (verifyType) {
         surveyValues[formInput.name] = formInput.value;
-        question[formInput.name] = formInput.question;
+        question[formInput.question] = formInput.question;
       }
 
       if (formInput.type === "select-one") {
         surveyValues[formInput.name] = formInput.value;
-        question[formInput.name] = formInput.question;
+        question[formInput.question] = formInput.question;
       }
 
       if (formInput.type === "select-multiple") {
@@ -87,13 +87,13 @@ export const Survey = (props) => {
             <SurveyRadioInput
               object={obj}
               required={props.required}
-              question={props.question}
+              question={obj.question}
               key={inputKey}
             />
           ) : obj.type === "select" ? (
             <SurveySelectInput
               className="form-control mb-3"
-              question={obj.Question}
+              question={obj.question}
               required={props.required}
               object={obj}
               key={inputKey}

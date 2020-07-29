@@ -1,26 +1,27 @@
 [
   {
-    "page": 2,
+    "page": 1,
     "required": true,
     "name": "full_name",
     "type": "text",
     "placeholder": "Your full name"
   },
   {
-    "page": 2,
+    "page": 1,
     "required": true,
     "name": "email",
     "type": "email",
     "placeholder": "Email"
   },
   {
-    "page": 3,
+    "page": 2,
     "name": "message",
     "type": "textarea",
-    "placeholder": "What is your favorite ice cream flavor?"
+    "placeholder": "Enter flavor here.",
+    "question": "What is your favorite ice cream flavor?"
   },
   {
-    "page": 3,
+    "page": 2,
     "required": true,
     "name": "radioChoice",
     "question": "If you had to choose, which would you prefer?",
@@ -41,7 +42,7 @@
     ]
   },
   {
-    "page": 3,
+    "page": 2,
     "name": "checkboxChoice",
     "question": "What is your favorite time of day to sleep? Choose all that apply.",
     "type": "checkbox",
@@ -69,7 +70,7 @@
     ]
   },
   {
-    "page": 3,
+    "page": 2,
     "name": "mySelection",
     "question": "Select your ideal vacation continent out of the choices given.",
     "type": "select",
@@ -105,7 +106,7 @@
     ]
   },
   {
-    "page": 3,
+    "page": 2,
     "name": "multipleSelection",
     "question": "How much wood could a woodchuck chuck if a woodchuck could chuck wood? Select all that apply.",
     "type": "select",
