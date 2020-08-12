@@ -83,17 +83,16 @@ export const Survey = (props) => {
     console.log(inlineData);
   };
 
-  this.json.bind(this) = {}
-
-  const validateJSON = (json) => {
+  const validateSurvey = (json) => {
     let validSurvey
     try {
-      validSurvey = JSON.stringify(JSON.parse(this.StaticRange.json), null, 2)
-    } catch(e) {
+      validSurvey = JSON.stringify(JSON.parse(json), null, 2)}
+       catch(e) {
       throw e
     }
-    return validSurvey
+    return validSurvey;
   }
+  
 
   const loadSurvey = () => {
     const json = window.localStorage.getItem(LOCALSTORAGE_KEY) ||
@@ -102,7 +101,7 @@ export const Survey = (props) => {
   }
 
   const saveSurvey = () => {
-    const validSurvey = this.validateSurvey(this.state.json)
+    const validSurvey = validateSurvey(json)
 
     if (!validSurvey) return;
 
@@ -158,7 +157,7 @@ export const Survey = (props) => {
           Continue
         </button>
       ) : (
-        <button onClick={this.saveSurvey} type="submit" className="btn btn-primary my-5">
+        <button onClick={saveSurvey} type="submit" className="btn btn-primary my-5">
           Submit
         </button>
       )}
