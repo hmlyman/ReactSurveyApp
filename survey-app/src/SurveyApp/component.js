@@ -1,24 +1,41 @@
 import React, { useState } from "react";
 import { SurveyTextInput, SurveyRadioInput, SurveySelectInput } from "./inputs";
 import { verifyTextInputType } from "./verifiers";
+import $ from "jquery"; 
 
 export const Survey = (props) => {
-  const [page, setPage] = useState(1);
-  const [isFinalPage, setIsFinalPage] = useState(false);
-  const [surveyValues, setSurveyValues] = useState({});
-  const [question, setQuestion] = useState({});
-  const triggerBackendUpdate = () => {
-    console.log(question);
-    console.log(surveyValues);
-    setPage(1);
-    setSurveyValues({});
-    setQuestion({});
-  };
-  const [inlineData, setInlineData] = useState({});
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    event.persist();
+    const [page, setPage] = useState(1);
+    const [isFinalPage, setIsFinalPage] = useState(false);
+    const [surveyValues, setSurveyValues] = useState({});
+    const [question, setQuestion] = useState({});
+    const triggerBackendUpdate = () => {
+      console.log(question);
+      console.log(surveyValues);
+      setPage(1);
+      setSurveyValues({});
+      setQuestion({});
+    };
+    const [inlineData, setInlineData] = useState({});
+    // this.handleSubmit = this.handleSubmit.bind(this);
+  
 
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      event.persist();
+
+      // $.ajax({
+      //   url: props.url,
+      //   dataType: 'json',
+      //   type: 'POST',
+      //   data: event,
+      //   success: function(data) {
+      //     this.setState({data: data});
+      //   }.bind(this),
+      //   error: function(xhr, status, err) {
+      //     console.error(this.props.url, status, err.toString());
+      //   }.bind(this)
+      // });
+    
     for (let formInput of event.target.elements) {
       const verifyType = verifyTextInputType(formInput.type);
       if (verifyType) {
@@ -46,7 +63,11 @@ export const Survey = (props) => {
         surveyValues[formInput.name] = formInput.value;
         question[formInput.name] = formInput.question;
       }
+
+      
     }
+    
+    
 
     setQuestion(question);
 
@@ -65,8 +86,8 @@ export const Survey = (props) => {
         setPage(nextPage);
       }
     }
-  };
-
+    };
+  
   const callback = (name, value) => {
     console.log("callback", name, value);
     inlineData[name] = value;
@@ -77,7 +98,7 @@ export const Survey = (props) => {
   const inputs = props.inputs
     ? props.inputs.filter((inputOption) => inputOption.page === page)
     : [];
-  return (
+    return (
     <form onSubmit={handleSubmit}>
       {isFinalPage !== true &&
         inputs.map((obj, index) => {
@@ -125,5 +146,9 @@ export const Survey = (props) => {
         </button>
       )}
     </form>
-  );
-};
+    
+    )
+      }
+
+
+

@@ -7,7 +7,7 @@ export const SurveySelectInput = (props) => {
 
   return (
     <>
-      <h2>{props.question}</h2>
+      <h5>{props.question}</h5>
       <select
         name={object.name}
         className={props.className}
@@ -37,7 +37,7 @@ export const SurveyRadioInput = (props) => {
   const { object, question } = props;
   return (
     <div className={`form-check ${props.className}`}>
-      <h2>{question}</h2>
+      <h5>{question}</h5>
       {object.options.map((data, index) => {
         return (
           <div key={`${object.type}-${index}`}>
@@ -80,12 +80,12 @@ export const SurveyTextInput = (props) => {
   };
   return inputType === "textarea" ? (
     <>
-      <h2>{props.question}</h2>
+      <h5>{props.question}</h5>
       <textarea {...inputProps} />
     </>
   ) : (
     <>
-      <h2>{props.question}</h2>
+      <h5>{props.question}</h5>
       <input {...inputProps} />
     </>
   );

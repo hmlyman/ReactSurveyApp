@@ -1,5 +1,5 @@
 import React from "react";
-import { Survey } from "./SurveyApp/component";
+import {Survey} from "./SurveyApp/component";
 import SurveyData from "./SurveyApp/survey.json";
 
 const App = (props) => {
