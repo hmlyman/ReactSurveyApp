@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SurveyTextInput, SurveyRadioInput, SurveySelectInput } from "./inputs";
 import { verifyTextInputType } from "./verifiers";
-import $ from "jquery"; 
+
 
 export const Survey = (props) => {
     const [page, setPage] = useState(1);
@@ -16,25 +16,13 @@ export const Survey = (props) => {
       setQuestion({});
     };
     const [inlineData, setInlineData] = useState({});
+    const LOCALSTORAGE_KEY = "SurveyJSON"
     // this.handleSubmit = this.handleSubmit.bind(this);
-  
+
 
     const handleSubmit = (event) => {
       event.preventDefault();
       event.persist();
-
-      // $.ajax({
-      //   url: props.url,
-      //   dataType: 'json',
-      //   type: 'POST',
-      //   data: event,
-      //   success: function(data) {
-      //     this.setState({data: data});
-      //   }.bind(this),
-      //   error: function(xhr, status, err) {
-      //     console.error(this.props.url, status, err.toString());
-      //   }.bind(this)
-      // });
     
     for (let formInput of event.target.elements) {
       const verifyType = verifyTextInputType(formInput.type);
@@ -95,6 +83,35 @@ export const Survey = (props) => {
     console.log(inlineData);
   };
 
+  this.json.bind(this) = {}
+
+  const validateJSON = (json) => {
+    let validSurvey
+    try {
+      validSurvey = JSON.stringify(JSON.parse(this.StaticRange.json), null, 2)
+    } catch(e) {
+      throw e
+    }
+    return validSurvey
+  }
+
+  const loadSurvey = () => {
+    const json = window.localStorage.getItem(LOCALSTORAGE_KEY) ||
+    JSON.stringify(inlineData, null, 2)
+    this.setState({ json})
+  }
+
+  const saveSurvey = () => {
+    const validSurvey = this.validateSurvey(this.state.json)
+
+    if (!validSurvey) return;
+
+    window.localStorage.setItem(
+      LOCALSTORAGE_KEY,
+      validSurvey
+    )
+  }
+
   const inputs = props.inputs
     ? props.inputs.filter((inputOption) => inputOption.page === page)
     : [];
@@ -141,7 +158,7 @@ export const Survey = (props) => {
           Continue
         </button>
       ) : (
-        <button type="submit" className="btn btn-primary my-5">
+        <button onClick={this.saveSurvey} type="submit" className="btn btn-primary my-5">
           Submit
         </button>
       )}
