@@ -100,7 +100,7 @@ export const Survey = (props) => {
     this.setState({ json})
   }
 
-  const saveSurvey = () => {
+  const saveSurvey = (json) => {
     const validSurvey = validateSurvey(json)
 
     if (!validSurvey) return;
