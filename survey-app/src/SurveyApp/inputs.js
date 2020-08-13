@@ -116,13 +116,13 @@ export const SurveyRadioInput = (props) => {
   return (
     <div id={object.name}>
       <div className={`form-check ${props.className}`}>
-        <h5>{question}</h5>
+        <h5 className="radio-inline control-label ">{question}</h5>
         {object.options.map((data, index) => {
           return (
             <div key={`${object.type}-${index}`}>
               <input
                 {...inputProps}
-                className="form-check-input"
+                className="form-check-input "
                 required={object.required}
                 type={object.type}
                 value={data.value}
@@ -130,7 +130,7 @@ export const SurveyRadioInput = (props) => {
                 id={`${object.name}-${index}`}
               />
               <label
-                className="radio-inline control-label"
+                className="radio-inline control-label "
                 htmlFor={`${object.name}-${index}`}
               >
                 {data.label}
@@ -164,14 +164,14 @@ export const SurveyCheckboxInput = (props) => {
 
   return (
     <div id={object.name}>
-      <div className={`form-check ${props.className}`}>
+      <div className={`form-check  ${props.className}`}>
         <h5>{question}</h5>
         {object.options.map((data, index) => {
           return (
             <div key={`${object.type}-${index}`}>
               <input
                 {...inputProps}
-                className="form-check-input"
+                className="form-check-input "
                 required={object.required}
                 type={object.type}
                 value={data.value}
@@ -179,7 +179,7 @@ export const SurveyCheckboxInput = (props) => {
                 id={`${object.name}-${index}`}
               />
               <label
-                className="form-check-label"
+                className="form-check-label "
                 htmlFor={`${object.name}-${index}`}
               >
                 {data.label}
