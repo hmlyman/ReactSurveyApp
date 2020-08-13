@@ -8,11 +8,9 @@ const App = (props) => {
     <>
       <div className="container">
         <nav className="navbar">
-          <button name="loadSurvey-btn" className="btn btn-primary my-5 mx-5">
-            <Link className="" to="/loadedSurvey">
-              Load Survey
-            </Link>
-          </button>
+          <Link className="btn btn-primary" to="/loadedSurvey">
+            Load Survey
+          </Link>
         </nav>
       </div>
       <div className="container">
