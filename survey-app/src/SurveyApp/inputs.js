@@ -130,7 +130,7 @@ export const SurveyRadioInput = (props) => {
                 id={`${object.name}-${index}`}
               />
               <label
-                className="form-check-label"
+                className="radio-inline control-label"
                 htmlFor={`${object.name}-${index}`}
               >
                 {data.label}
