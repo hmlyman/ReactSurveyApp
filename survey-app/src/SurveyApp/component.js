@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { SurveyTextInput, SurveyRadioInput, SurveySelectInput } from "./inputs";
 import { verifyTextInputType } from "./verifiers";
 
@@ -15,7 +15,7 @@ export const Survey = (props) => {
     setQuestion({});
   };
   const [inlineData, setInlineData] = useState({});
-  const LOCALSTORAGE_KEY = "SurveyJSON";
+  // const LOCALSTORAGE_KEY = "SurveyJSON";
   // this.handleSubmit = this.handleSubmit.bind(this);
 
   const handleSubmit = (event) => {
@@ -77,22 +77,22 @@ export const Survey = (props) => {
     console.log(inlineData);
   };
 
-  const validateSurvey = (json) => {
-    let validSurvey;
-    try {
-      validSurvey = JSON.stringify(JSON.parse(json), null, 2);
-    } catch (e) {
-      throw e;
-    }
-    return validSurvey;
-  };
+  // const validateSurvey = (json) => {
+  //   let validSurvey;
+  //   try {
+  //     validSurvey = JSON.stringify(JSON.parse(json), null, 2);
+  //   } catch (e) {
+  //     throw e;
+  //   }
+  //   return validSurvey;
+  // };
 
-  const loadSurvey = () => {
-    const json =
-      window.localStorage.getItem(LOCALSTORAGE_KEY) ||
-      JSON.stringify(inlineData, null, 2);
-    this.setState({ json });
-  };
+  // const loadSurvey = () => {
+  //   const json =
+  //     window.localStorage.getItem(LOCALSTORAGE_KEY) ||
+  //     JSON.stringify(inlineData, null, 2);
+  //   this.setState({ json });
+  // };
 
   const saveSurvey = async () => {
     await fetch("/api/survey", {
@@ -118,22 +118,41 @@ export const Survey = (props) => {
           return obj.type === "radio" || obj.type === "checkbox" ? (
             <SurveyRadioInput
               object={obj}
+              type={obj.type}
               required={props.required}
+              triggerCallback={callback}
               question={obj.question}
+              defaultValue={obj.defaultValue}
+              name={obj.name}
+              key={inputKey}
+            />
+          ) : obj.type === "checkbox" ? (
+            <SurveyCheckboxInput
+              object={obj}
+              type={obj.type}
+              required={props.required}
+              triggerCallback={callback}
+              question={obj.question}
+              defaultValue={obj.defaultValue}
+              name={obj.name}
               key={inputKey}
             />
           ) : obj.type === "select" ? (
             <SurveySelectInput
               className="form-control mb-3 mt-3"
+              object={obj}
+              type={obj.type}
               question={obj.question}
               required={props.required}
-              object={obj}
+              triggerCallback={callback}
+              defaultValue={obj.defaultValue}
+              name={obj.name}
               key={inputKey}
-              {...obj}
             />
           ) : (
             <SurveyTextInput
               className="mb-3 mt-3 form-control"
+              object={obj}
               type={obj.type}
               question={props.question}
               required={props.required}
@@ -142,24 +161,28 @@ export const Survey = (props) => {
               defaultValue={obj.defaultValue}
               name={obj.name}
               key={inputKey}
-              {...obj}
             />
           );
         })}
 
       {isFinalPage !== true ? (
-        <button name="begin-btn" className="btn btn-primary my-5">
+        <button name="continue-btn" className="btn btn-primary my-5 mx-5">
           Continue
         </button>
       ) : (
         <button
           onClick={saveSurvey}
           type="button"
-          className="btn btn-primary my-5"
+          className="btn btn-primary my-5 mx-5"
         >
-          Submit
+          Submit Survey
         </button>
       )}
+      {isFinalPage === true ? (
+        <button name="loadSurvey-btn" className="btn btn-primary my-5 mx-5">
+          Load Survey
+        </button>
+      ) : null}
     </form>
   );
 };

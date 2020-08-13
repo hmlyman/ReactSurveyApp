@@ -10,7 +10,7 @@ export const useInputChange = (customValue, callback) => {
     }
   };
   return {
-    value: value,
+    value: value.array,
     handleChange: handleChange,
   };
 };

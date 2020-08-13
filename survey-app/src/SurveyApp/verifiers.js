@@ -8,6 +8,8 @@ export function verifyTextInputType(inputType) {
       return true;
     case "textarea":
       return true;
+    case "checkbox":
+      return true;
     default:
       return false;
   }

@@ -1,14 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
 import { verifyTextInputType } from "./verifiers";
 import { useInputChange } from "./hooks";
 
 export const SurveySelectInput = (props) => {
   const { object } = props;
-
+  const { value, handleChange } = useInputChange(
+    props.defaultValue,
+    props.triggerCallback
+  );
+  const inputType = verifyTextInputType(props.type) ? props.type : "array";
+  const inputProps = {
+    className: props.className ? props.className : "form-control",
+    onChange: handleChange,
+    value: value,
+    required: props.required,
+    question: props.question,
+    type: inputType,
+    name: props.name ? props.name : `${inputType}_${props.key}`,
+  };
   return (
     <>
       <h5>{props.question}</h5>
       <select
+        {...inputProps}
+        name={object.name}
+        className={props.className}
+        multiple={object.multiple}
+      >
+        <option hidden value>
+          Select one
+        </option>
+        {object.options.map((data, index) => {
+          return (
+            <option
+              value={data.value}
+              id={`${object.name}-${index}`}
+              key={`${object.type}-${index}`}
+              className={`form-check ${props.optionClassName}`}
+            >
+              {data.label}
+            </option>
+          );
+        })}
+      </select>
+    </>
+  );
+};
+export const SurveySelectMultipleInput = (props) => {
+  const { object } = props;
+  const { value, handleChange } = useInputChange(
+    props.defaultValue,
+    props.triggerCallback
+  );
+  const inputType = verifyTextInputType(props.type) ? props.type : "array";
+  const inputProps = {
+    className: props.className ? props.className : "form-control",
+    onChange: handleChange,
+    value: value,
+    required: props.required,
+    question: props.question,
+    type: inputType,
+    name: props.name ? props.name : `${inputType}_${props.key}`,
+  };
+  return (
+    <>
+      <h5>{props.question}</h5>
+      <select
+        {...inputProps}
         name={object.name}
         className={props.className}
         multiple={object.multiple}
@@ -35,6 +93,20 @@ export const SurveySelectInput = (props) => {
 
 export const SurveyRadioInput = (props) => {
   const { object, question } = props;
+  const { value, handleChange } = useInputChange(
+    props.defaultValue,
+    props.triggerCallback
+  );
+  const inputType = verifyTextInputType(props.type) ? props.type : "text";
+  const inputProps = {
+    className: props.className ? props.className : "form-control",
+    onChange: handleChange,
+    value: value,
+    required: props.required,
+    question: props.question,
+    type: inputType,
+    name: props.name ? props.name : `${inputType}_${props.key}`,
+  };
   return (
     <div className={`form-check ${props.className}`}>
       <h5>{question}</h5>
@@ -42,6 +114,53 @@ export const SurveyRadioInput = (props) => {
         return (
           <div key={`${object.type}-${index}`}>
             <input
+              {...inputProps}
+              className="form-check-input"
+              required={object.required}
+              type={object.type}
+              value={data.value}
+              name={object.name}
+              id={`${object.name}-${index}`}
+            />
+            <label
+              className="form-check-label"
+              htmlFor={`${object.name}-${index}`}
+            >
+              {data.label}
+            </label>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+export const SurveyCheckboxInput = (props) => {
+  const { object, question } = props;
+  const { value, handleChange } = useInputChange(
+    props.defaultValue,
+    props.triggerCallback
+  );
+  const inputType = verifyTextInputType(props.type) ? props.type : "checkbox";
+  const inputProps = {
+    className: props.className ? props.className : "form-control",
+    onChange: handleChange,
+    value: value.array,
+    required: props.required,
+    question: props.question,
+    type: inputType,
+    name: props.name ? props.name : `${inputType}_${props.key}`,
+  };
+  // const onChangeValue1 = useState{}
+
+  return (
+    <div className={`form-check ${props.className}`}>
+      <h5>{question}</h5>
+      {object.options.map((data, index) => {
+        return (
+          <div key={`${object.type}-${index}`}>
+            <input
+              {...inputProps}
               className="form-check-input"
               required={object.required}
               type={object.type}
