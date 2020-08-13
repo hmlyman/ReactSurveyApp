@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { verifyTextInputType } from "./verifiers";
 import { useInputChange } from "./hooks";
 
 export const SurveySelectInput = (props) => {
   const { object } = props;
+  const inputType = verifyTextInputType(props.type) ? props.type : "array";
   const { value, handleChange } = useInputChange(
     props.defaultValue,
-    props.triggerCallback
+    props.triggerCallback,
+    inputType
   );
-  const inputType = verifyTextInputType(props.type) ? props.type : "array";
+
   const inputProps = {
     className: props.className ? props.className : "form-control",
     onChange: handleChange,
@@ -20,29 +22,31 @@ export const SurveySelectInput = (props) => {
   };
   return (
     <>
-      <h5>{props.question}</h5>
-      <select
-        {...inputProps}
-        name={object.name}
-        className={props.className}
-        multiple={object.multiple}
-      >
-        <option hidden value>
-          Select one
-        </option>
-        {object.options.map((data, index) => {
-          return (
-            <option
-              value={data.value}
-              id={`${object.name}-${index}`}
-              key={`${object.type}-${index}`}
-              className={`form-check ${props.optionClassName}`}
-            >
-              {data.label}
-            </option>
-          );
-        })}
-      </select>
+      <div id={object.name}>
+        <h5>{props.question}</h5>
+        <select
+          {...inputProps}
+          name={object.name}
+          className={props.className}
+          multiple={object.multiple}
+        >
+          <option hidden value>
+            Select one
+          </option>
+          {object.options.map((data, index) => {
+            return (
+              <option
+                value={data.value}
+                id={`${object.name}-${index}`}
+                key={`${object.type}-${index}`}
+                className={`form-check ${props.optionClassName}`}
+              >
+                {data.label}
+              </option>
+            );
+          })}
+        </select>
+      </div>
     </>
   );
 };
@@ -56,7 +60,7 @@ export const SurveySelectMultipleInput = (props) => {
   const inputProps = {
     className: props.className ? props.className : "form-control",
     onChange: handleChange,
-    value: value,
+    value: value.array,
     required: props.required,
     question: props.question,
     type: inputType,
@@ -64,29 +68,31 @@ export const SurveySelectMultipleInput = (props) => {
   };
   return (
     <>
-      <h5>{props.question}</h5>
-      <select
-        {...inputProps}
-        name={object.name}
-        className={props.className}
-        multiple={object.multiple}
-      >
-        <option hidden value>
-          Select one
-        </option>
-        {object.options.map((data, index) => {
-          return (
-            <option
-              value={data.value}
-              id={`${object.name}-${index}`}
-              key={`${object.type}-${index}`}
-              className={`form-check ${props.optionClassName}`}
-            >
-              {data.label}
-            </option>
-          );
-        })}
-      </select>
+      <div id={object.name}>
+        <h5>{props.question}</h5>
+        <select
+          {...inputProps}
+          name={object.name}
+          className={props.className}
+          multiple={object.multiple}
+        >
+          <option hidden value>
+            Select one
+          </option>
+          {object.options.map((data, index) => {
+            return (
+              <option
+                value={data.value}
+                id={`${object.name}-${index}`}
+                key={`${object.type}-${index}`}
+                className={`form-check ${props.optionClassName}`}
+              >
+                {data.label}
+              </option>
+            );
+          })}
+        </select>
+      </div>
     </>
   );
 };
@@ -108,29 +114,31 @@ export const SurveyRadioInput = (props) => {
     name: props.name ? props.name : `${inputType}_${props.key}`,
   };
   return (
-    <div className={`form-check ${props.className}`}>
-      <h5>{question}</h5>
-      {object.options.map((data, index) => {
-        return (
-          <div key={`${object.type}-${index}`}>
-            <input
-              {...inputProps}
-              className="form-check-input"
-              required={object.required}
-              type={object.type}
-              value={data.value}
-              name={object.name}
-              id={`${object.name}-${index}`}
-            />
-            <label
-              className="form-check-label"
-              htmlFor={`${object.name}-${index}`}
-            >
-              {data.label}
-            </label>
-          </div>
-        );
-      })}
+    <div id={object.name}>
+      <div className={`form-check ${props.className}`}>
+        <h5>{question}</h5>
+        {object.options.map((data, index) => {
+          return (
+            <div key={`${object.type}-${index}`}>
+              <input
+                {...inputProps}
+                className="form-check-input"
+                required={object.required}
+                type={object.type}
+                value={data.value}
+                name={object.name}
+                id={`${object.name}-${index}`}
+              />
+              <label
+                className="form-check-label"
+                htmlFor={`${object.name}-${index}`}
+              >
+                {data.label}
+              </label>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
@@ -149,34 +157,37 @@ export const SurveyCheckboxInput = (props) => {
     required: props.required,
     question: props.question,
     type: inputType,
+    checked: false,
     name: props.name ? props.name : `${inputType}_${props.key}`,
   };
   // const onChangeValue1 = useState{}
 
   return (
-    <div className={`form-check ${props.className}`}>
-      <h5>{question}</h5>
-      {object.options.map((data, index) => {
-        return (
-          <div key={`${object.type}-${index}`}>
-            <input
-              {...inputProps}
-              className="form-check-input"
-              required={object.required}
-              type={object.type}
-              value={data.value}
-              name={object.name}
-              id={`${object.name}-${index}`}
-            />
-            <label
-              className="form-check-label"
-              htmlFor={`${object.name}-${index}`}
-            >
-              {data.label}
-            </label>
-          </div>
-        );
-      })}
+    <div id={object.name}>
+      <div className={`form-check ${props.className}`}>
+        <h5>{question}</h5>
+        {object.options.map((data, index) => {
+          return (
+            <div key={`${object.type}-${index}`}>
+              <input
+                {...inputProps}
+                className="form-check-input"
+                required={object.required}
+                type={object.type}
+                value={data.value}
+                name={object.name}
+                id={`${object.name}-${index}`}
+              />
+              <label
+                className="form-check-label"
+                htmlFor={`${object.name}-${index}`}
+              >
+                {data.label}
+              </label>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

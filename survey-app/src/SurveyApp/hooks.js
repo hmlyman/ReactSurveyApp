@@ -10,7 +10,9 @@ export const useInputChange = (customValue, callback) => {
     }
   };
   return {
-    value: value.array,
+    value: value,
     handleChange: handleChange,
   };
 };
+
+export const renderMultiple = (callback) => {};

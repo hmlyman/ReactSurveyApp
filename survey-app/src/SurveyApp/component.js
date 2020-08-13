@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { SurveyTextInput, SurveyRadioInput, SurveySelectInput } from "./inputs";
+import {
+  SurveyTextInput,
+  SurveyRadioInput,
+  SurveySelectInput,
+  SurveyCheckboxInput,
+  SurveySelectMultipleInput,
+} from "./inputs";
 import { verifyTextInputType } from "./verifiers";
 
 export const Survey = (props) => {
@@ -149,6 +155,18 @@ export const Survey = (props) => {
               name={obj.name}
               key={inputKey}
             />
+          ) : obj.type === "selectMultiple" ? (
+            <SurveySelectMultipleInput
+              className="form-control mb-3 mt-3"
+              object={obj}
+              type={obj.type}
+              question={obj.question}
+              required={props.required}
+              triggerCallback={callback}
+              defaultValue={obj.defaultValue}
+              name={obj.name}
+              key={inputKey}
+            />
           ) : (
             <SurveyTextInput
               className="mb-3 mt-3 form-control"
@@ -178,11 +196,6 @@ export const Survey = (props) => {
           Submit Survey
         </button>
       )}
-      {isFinalPage === true ? (
-        <button name="loadSurvey-btn" className="btn btn-primary my-5 mx-5">
-          Load Survey
-        </button>
-      ) : null}
     </form>
   );
 };

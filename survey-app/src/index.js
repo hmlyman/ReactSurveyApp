@@ -3,8 +3,20 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import { Route, BrowserRouter as Router } from "react-router-dom";
+import LoadedSurvey from "./SurveyApp/Routes/loadedSurvey";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const routing = (
+  <Router>
+    <div>
+      <Route exact path="/" component={App} />
+      <Route path="/survey" compenent={App} />
+      <Route path="/loadedSurvey" component={LoadedSurvey} />
+    </div>
+  </Router>
+);
+
+ReactDOM.render(routing, document.getElementById("root"));
 // ReactDOM.render(
 //   <React.StrictMode>
 //     <App />

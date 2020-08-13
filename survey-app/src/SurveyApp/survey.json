@@ -2,7 +2,7 @@
   {
     "page": 1,
     "required": true,
-    "name": "full_name",
+    "name": "fullName",
     "type": "text",
     "placeholder": "Your full name"
   },
@@ -93,7 +93,7 @@
     "page": 2,
     "name": "multipleSelection",
     "question": "Select all that apply:",
-    "type": "select",
+    "type": "selectMultiple",
     "multiple": true,
     "options": [
       {
