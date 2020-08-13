@@ -17,112 +17,96 @@
     "page": 2,
     "name": "message",
     "type": "textarea",
-    "placeholder": "Enter flavor here.",
-    "question": "What is your favorite ice cream flavor?"
+    "placeholder": "Enter response here.",
+    "question": "Are you aware you are canceling with your current company and entering a contract with Alder, Inc.?"
   },
   {
     "page": 2,
     "required": true,
     "name": "radioChoice",
-    "question": "If you had to choose, which would you prefer?",
+    "question": "Do you understand you will be paying a monthly rate of $49.95?",
     "type": "radio",
     "options": [
       {
         "value": 1,
-        "label": "Eat one of those Hotlix Scorpion Lollipops"
+        "label": "Yes"
       },
       {
         "value": 2,
-        "label": "Sleep in mud for a week"
-      },
-      {
-        "value": 3,
-        "label": "Watch creepy movies while in a tent alone in the woods"
+        "label": "No"
       }
     ]
   },
   {
     "page": 2,
     "name": "checkboxChoice",
-    "question": "What is your favorite time of day to sleep? Choose all that apply.",
+    "question": "Check all that apply. I understand:",
     "type": "checkbox",
     "options": [
       {
         "value": 1,
-        "label": "Night"
+        "label": "I am entering into a new contract."
       },
       {
         "value": 2,
-        "label": "Morning"
+        "label": "I will be responsible for $49.95 each month until my contract is over."
       },
       {
         "value": 3,
-        "label": "Afternoon"
+        "label": "I have three days to cancel."
       },
       {
         "value": 4,
-        "label": "After a meal"
+        "label": "If I cancel after three days, I will be responsible for the remainder of the contract."
       },
       {
         "value": 5,
-        "label": "Any time's a good time to sleep"
+        "label": "My system is monitored and if it is set off, the cops will come to my home."
       }
     ]
   },
   {
     "page": 2,
     "name": "mySelection",
-    "question": "Select your ideal vacation continent out of the choices given.",
+    "question": "Which of the following is not true?",
     "type": "select",
     "options": [
       {
         "value": 1,
-        "label": "South America"
+        "label": "I can cancel any time with no penalty."
       },
       {
         "value": 2,
-        "label": "Africa"
+        "label": "I will be responsible for the remaining balance of the contract if I cancel early."
       },
       {
         "value": 3,
-        "label": "Asia"
+        "label": "I have to set the alarm for the house to be protected."
       },
       {
         "value": 4,
-        "label": "North America - keepin' it close to home"
-      },
-      {
-        "value": 5,
-        "label": "Europe"
-      },
-      {
-        "value": 6,
-        "label": "Antarctica"
-      },
-      {
-        "value": 7,
-        "label": "Australia"
+        "label": "My alarm system is with Alder, Inc."
       }
     ]
   },
   {
     "page": 2,
     "name": "multipleSelection",
-    "question": "How much wood could a woodchuck chuck if a woodchuck could chuck wood? Select all that apply.",
+    "question": "Select all that apply:",
     "type": "select",
     "multiple": true,
     "options": [
       {
         "value": 1,
-        "label": "He can't so what's the point in answering?"
+        "label": "I am happy with the system as it has been explained to me."
       },
       {
         "value": 2,
-        "label": "A woodchuck would chuck all the would he could chuck."
+        "label": "I am happy with the level of customer service I have receievd today."
       },
       {
         "value": 3,
-        "label": "I just learned a woodchuck is not a bird, but a groundhog. I blame this on Woody the Woodpecker."
+        "label": "I am happy with the representatives who have helped protect my home today."
       }
     ]
   }

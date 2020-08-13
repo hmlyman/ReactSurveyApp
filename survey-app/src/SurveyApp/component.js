@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SurveyTextInput, SurveyRadioInput, SurveySelectInput } from "./inputs";
 import { verifyTextInputType } from "./verifiers";
 
@@ -15,6 +15,9 @@ export const Survey = (props) => {
     setQuestion({});
   };
   const [inlineData, setInlineData] = useState({});
+  const LOCALSTORAGE_KEY = "SurveyJSON";
+  // this.handleSubmit = this.handleSubmit.bind(this);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     event.persist();
@@ -74,6 +77,35 @@ export const Survey = (props) => {
     console.log(inlineData);
   };
 
+  const validateSurvey = (json) => {
+    let validSurvey;
+    try {
+      validSurvey = JSON.stringify(JSON.parse(json), null, 2);
+    } catch (e) {
+      throw e;
+    }
+    return validSurvey;
+  };
+
+  const loadSurvey = () => {
+    const json =
+      window.localStorage.getItem(LOCALSTORAGE_KEY) ||
+      JSON.stringify(inlineData, null, 2);
+    this.setState({ json });
+  };
+
+  const saveSurvey = async () => {
+    await fetch("/api/survey", {
+      method: "POST",
+      body: JSON.stringify(inlineData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).catch((error) => {
+      console.error(error);
+    });
+  };
+
   const inputs = props.inputs
     ? props.inputs.filter((inputOption) => inputOption.page === page)
     : [];
@@ -120,7 +152,11 @@ export const Survey = (props) => {
           Continue
         </button>
       ) : (
-        <button type="submit" className="btn btn-primary my-5">
+        <button
+          onClick={saveSurvey}
+          type="button"
+          className="btn btn-primary my-5"
+        >
           Submit
         </button>
       )}
