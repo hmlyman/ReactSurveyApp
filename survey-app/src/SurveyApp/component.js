@@ -2,28 +2,26 @@ import React, { useState, useEffect } from "react";
 import { SurveyTextInput, SurveyRadioInput, SurveySelectInput } from "./inputs";
 import { verifyTextInputType } from "./verifiers";
 
-
 export const Survey = (props) => {
-    const [page, setPage] = useState(1);
-    const [isFinalPage, setIsFinalPage] = useState(false);
-    const [surveyValues, setSurveyValues] = useState({});
-    const [question, setQuestion] = useState({});
-    const triggerBackendUpdate = () => {
-      console.log(question);
-      console.log(surveyValues);
-      setPage(1);
-      setSurveyValues({});
-      setQuestion({});
-    };
-    const [inlineData, setInlineData] = useState({});
-    const LOCALSTORAGE_KEY = "SurveyJSON"
-    // this.handleSubmit = this.handleSubmit.bind(this);
+  const [page, setPage] = useState(1);
+  const [isFinalPage, setIsFinalPage] = useState(false);
+  const [surveyValues, setSurveyValues] = useState({});
+  const [question, setQuestion] = useState({});
+  const triggerBackendUpdate = () => {
+    console.log(question);
+    console.log(surveyValues);
+    setPage(1);
+    setSurveyValues({});
+    setQuestion({});
+  };
+  const [inlineData, setInlineData] = useState({});
+  const LOCALSTORAGE_KEY = "SurveyJSON";
+  // this.handleSubmit = this.handleSubmit.bind(this);
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    event.persist();
 
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      event.persist();
-    
     for (let formInput of event.target.elements) {
       const verifyType = verifyTextInputType(formInput.type);
       if (verifyType) {
@@ -51,11 +49,7 @@ export const Survey = (props) => {
         surveyValues[formInput.name] = formInput.value;
         question[formInput.name] = formInput.question;
       }
-
-      
     }
-    
-    
 
     setQuestion(question);
 
@@ -74,8 +68,8 @@ export const Survey = (props) => {
         setPage(nextPage);
       }
     }
-    };
-  
+  };
+
   const callback = (name, value) => {
     console.log("callback", name, value);
     inlineData[name] = value;
@@ -84,37 +78,38 @@ export const Survey = (props) => {
   };
 
   const validateSurvey = (json) => {
-    let validSurvey
+    let validSurvey;
     try {
-      validSurvey = JSON.stringify(JSON.parse(json), null, 2)}
-       catch(e) {
-      throw e
+      validSurvey = JSON.stringify(JSON.parse(json), null, 2);
+    } catch (e) {
+      throw e;
     }
     return validSurvey;
-  }
-  
+  };
 
   const loadSurvey = () => {
-    const json = window.localStorage.getItem(LOCALSTORAGE_KEY) ||
-    JSON.stringify(inlineData, null, 2)
-    this.setState({ json})
-  }
+    const json =
+      window.localStorage.getItem(LOCALSTORAGE_KEY) ||
+      JSON.stringify(inlineData, null, 2);
+    this.setState({ json });
+  };
 
-  const saveSurvey = (json) => {
-    const validSurvey = validateSurvey(json)
-
-    if (!validSurvey) return;
-
-    window.localStorage.setItem(
-      LOCALSTORAGE_KEY,
-      validSurvey
-    )
-  }
+  const saveSurvey = async () => {
+    await fetch("/api/survey", {
+      method: "POST",
+      body: JSON.stringify(inlineData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).catch((error) => {
+      console.error(error);
+    });
+  };
 
   const inputs = props.inputs
     ? props.inputs.filter((inputOption) => inputOption.page === page)
     : [];
-    return (
+  return (
     <form onSubmit={handleSubmit}>
       {isFinalPage !== true &&
         inputs.map((obj, index) => {
@@ -157,14 +152,14 @@ export const Survey = (props) => {
           Continue
         </button>
       ) : (
-        <button onClick={saveSurvey} type="submit" className="btn btn-primary my-5">
+        <button
+          onClick={saveSurvey}
+          type="button"
+          className="btn btn-primary my-5"
+        >
           Submit
         </button>
       )}
     </form>
-    
-    )
-      }
-
-
-
+  );
+};
