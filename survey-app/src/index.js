@@ -5,6 +5,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import LoadedSurvey from "./SurveyApp/Routes/loadedSurvey";
+import ThankYou from "./SurveyApp/Routes/thankyou";
 
 const routing = (
   <Router>
@@ -12,6 +13,7 @@ const routing = (
       <Route exact path="/" component={App} />
       <Route path="/survey" compenent={App} />
       <Route path="/loadedSurvey" component={LoadedSurvey} />
+      <Route path="/thankyou" component={ThankYou} />
     </div>
   </Router>
 );

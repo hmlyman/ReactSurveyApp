@@ -7,6 +7,7 @@ import {
   SurveySelectMultipleInput,
 } from "./inputs";
 import { verifyTextInputType } from "./verifiers";
+import { Link } from "react-router-dom";
 
 export const Survey = (props) => {
   const [page, setPage] = useState(1);
@@ -188,13 +189,15 @@ export const Survey = (props) => {
           Continue
         </button>
       ) : (
-        <button
-          onClick={saveSurvey}
-          type="button"
-          className="btn btn-primary my-5 mx-5"
-        >
-          Submit Survey
-        </button>
+        <Link to="/thankyou">
+          <button
+            onClick={saveSurvey}
+            type="button"
+            className="btn btn-primary my-5 mx-5"
+          >
+            Submit Survey
+          </button>
+        </Link>
       )}
     </form>
   );
