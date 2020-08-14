@@ -28,11 +28,11 @@
     "type": "radio",
     "options": [
       {
-        "value": 1,
+        "value": "Yes",
         "label": "Yes"
       },
       {
-        "value": 2,
+        "value": "No",
         "label": "No"
       }
     ]
@@ -44,23 +44,23 @@
     "type": "checkbox",
     "options": [
       {
-        "value": 1,
+        "value": "I am entering into a new contract.",
         "label": "I am entering into a new contract."
       },
       {
-        "value": 2,
+        "value": "I will be responsible for $49.95 each month until my contract is over.",
         "label": "I will be responsible for $49.95 each month until my contract is over."
       },
       {
-        "value": 3,
+        "value": "I have three days to cancel.",
         "label": "I have three days to cancel."
       },
       {
-        "value": 4,
+        "value": "If I cancel after three days, I will be responsible for the remainder of the contract.",
         "label": "If I cancel after three days, I will be responsible for the remainder of the contract."
       },
       {
-        "value": 5,
+        "value": "My system is monitored and if it is set off, the cops will come to my home.",
         "label": "My system is monitored and if it is set off, the cops will come to my home."
       }
     ]
@@ -72,19 +72,19 @@
     "type": "select",
     "options": [
       {
-        "value": 1,
+        "value": "I can cancel any time with no penalty.",
         "label": "I can cancel any time with no penalty."
       },
       {
-        "value": 2,
+        "value": "I will be responsible for the remaining balance of the contract if I cancel early.",
         "label": "I will be responsible for the remaining balance of the contract if I cancel early."
       },
       {
-        "value": 3,
+        "value": "I have to set the alarm for the house to be protected.",
         "label": "I have to set the alarm for the house to be protected."
       },
       {
-        "value": 4,
+        "value": "My alarm system is with Alder, Inc.",
         "label": "My alarm system is with Alder, Inc."
       }
     ]
@@ -97,15 +97,15 @@
     "multiple": true,
     "options": [
       {
-        "value": 1,
+        "value": "I am happy with the system as it has been explained to me.",
         "label": "I am happy with the system as it has been explained to me."
       },
       {
-        "value": 2,
+        "value": "I am happy with the level of customer service I have receievd today.",
         "label": "I am happy with the level of customer service I have receievd today."
       },
       {
-        "value": 3,
+        "value": "I am happy with the representatives who have helped protect my home today.",
         "label": "I am happy with the representatives who have helped protect my home today."
       }
     ]

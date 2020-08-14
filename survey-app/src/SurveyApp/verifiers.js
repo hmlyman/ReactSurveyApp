@@ -1,4 +1,6 @@
-export function verifyTextInputType(inputType) {
+//import $ from "jquery";
+
+export function isTextInput(inputType) {
   switch (inputType) {
     case "text":
       return true;
@@ -9,7 +11,7 @@ export function verifyTextInputType(inputType) {
     case "textarea":
       return true;
     case "checkbox":
-      return true;
+      return false;
     default:
       return false;
   }

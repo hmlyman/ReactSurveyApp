@@ -1,10 +1,10 @@
 import React from "react";
-import { verifyTextInputType } from "./verifiers";
+import { isTextInput } from "./verifiers";
 import { useInputChange } from "./hooks";
 
 export const SurveySelectInput = (props) => {
   const { object } = props;
-  const inputType = verifyTextInputType(props.type) ? props.type : "array";
+  const inputType = isTextInput(props.type) ? props.type : "select";
   const { value, handleChange } = useInputChange(
     props.defaultValue,
     props.triggerCallback,
@@ -53,19 +53,20 @@ export const SurveySelectInput = (props) => {
 export const SurveySelectMultipleInput = (props) => {
   const { object } = props;
   const { value, handleChange } = useInputChange(
-    props.defaultValue,
+    props.value,
     props.triggerCallback
   );
-  const inputType = verifyTextInputType(props.type) ? props.type : "array";
+  const inputType = isTextInput(props.type) ? props.type : "";
   const inputProps = {
     className: props.className ? props.className : "form-control",
     onChange: handleChange,
-    value: value.array,
+    value: value,
     required: props.required,
     question: props.question,
     type: inputType,
     name: props.name ? props.name : `${inputType}_${props.key}`,
   };
+  console.log(value);
   return (
     <>
       <div id={object.name}>
@@ -103,7 +104,7 @@ export const SurveyRadioInput = (props) => {
     props.defaultValue,
     props.triggerCallback
   );
-  const inputType = verifyTextInputType(props.type) ? props.type : "text";
+  const inputType = isTextInput(props.type) ? props.type : "";
   const inputProps = {
     className: props.className ? props.className : "form-control",
     onChange: handleChange,
@@ -146,21 +147,20 @@ export const SurveyRadioInput = (props) => {
 export const SurveyCheckboxInput = (props) => {
   const { object, question } = props;
   const { value, handleChange } = useInputChange(
-    props.defaultValue,
+    props.value,
     props.triggerCallback
   );
-  const inputType = verifyTextInputType(props.type) ? props.type : "checkbox";
+  const inputType = isTextInput(props.type) ? props.type : "checkbox";
   const inputProps = {
     className: props.className ? props.className : "form-control",
     onChange: handleChange,
-    value: value.array,
+    value: value,
     required: props.required,
     question: props.question,
     type: inputType,
     checked: false,
     name: props.name ? props.name : `${inputType}_${props.key}`,
   };
-  // const onChangeValue1 = useState{}
 
   return (
     <div id={object.name}>
@@ -197,7 +197,7 @@ export const SurveyTextInput = (props) => {
     props.defaultValue,
     props.triggerCallback
   );
-  const inputType = verifyTextInputType(props.type) ? props.type : "text";
+  const inputType = isTextInput(props.type) ? props.type : "text";
   const inputProps = {
     className: props.className ? props.className : "form-control",
     onChange: handleChange,

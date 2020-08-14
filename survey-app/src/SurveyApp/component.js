@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   SurveyTextInput,
   SurveyRadioInput,
@@ -6,14 +6,19 @@ import {
   SurveyCheckboxInput,
   SurveySelectMultipleInput,
 } from "./inputs";
-import { verifyTextInputType } from "./verifiers";
+import { isTextInput } from "./verifiers";
 import { Link } from "react-router-dom";
 
 export const Survey = (props) => {
   const [page, setPage] = useState(1);
   const [isFinalPage, setIsFinalPage] = useState(false);
   const [surveyValues, setSurveyValues] = useState({});
+  //const [loadedInputs, setLoadedInputs] = useState({});
   const [question, setQuestion] = useState({});
+  const [inlineData, setInlineData] = useState({});
+
+  //const { surveyId } = props;
+
   const triggerBackendUpdate = () => {
     console.log(question);
     console.log(surveyValues);
@@ -21,38 +26,51 @@ export const Survey = (props) => {
     setSurveyValues({});
     setQuestion({});
   };
-  const [inlineData, setInlineData] = useState({});
-  // const LOCALSTORAGE_KEY = "SurveyJSON";
-  // this.handleSubmit = this.handleSubmit.bind(this);
+
+  // useEffect(() => {
+  //   if (surveyId) {
+  //     const inputDataFile = import(`./data_${surveyId}.json`);
+  //     inputDataFile.then((response) => {
+  //       setLoadedInputs(response.default);
+  //     });
+  //   }
+  // });
 
   const handleSubmit = (event) => {
     event.preventDefault();
     event.persist();
-
+    console.log(event.target.elements);
     for (let formInput of event.target.elements) {
-      const verifyType = verifyTextInputType(formInput.type);
-      if (verifyType) {
+      const isText = isTextInput(formInput.type);
+      console.log(formInput);
+
+      if (isText) {
         surveyValues[formInput.name] = formInput.value;
         question[formInput.question] = formInput.question;
       }
 
-      if (formInput.type === "select-one") {
-        surveyValues[formInput.name] = formInput.value;
-        question[formInput.question] = formInput.question;
-      }
-
-      if (formInput.type === "select-multiple") {
+      if (formInput.type === "selectMultiple") {
         let selected = [].filter.call(
           formInput.options,
           (option) => option.selected
         );
-        let values = selected.map((option) => option.value);
+        console.log(formInput);
+        console.log(selected);
+        console.log(formInput.options.selected);
 
+        const values = selected.map((option) => option.value);
         surveyValues[formInput.name] = values;
         question[formInput.name] = formInput.question;
       }
 
-      if (formInput.checked) {
+      if (formInput.type === "checkbox") {
+        // let selected = [].filter.call(
+        //   formInput.options,
+        //   (option) => option.selected
+        // );
+        // console.log(selected);
+        // console.log(formInput.options.selected);
+        // let values = selected.map((options) => options.value);
         surveyValues[formInput.name] = formInput.value;
         question[formInput.name] = formInput.question;
       }

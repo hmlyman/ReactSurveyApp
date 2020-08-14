@@ -3,7 +3,7 @@ import { Survey } from "./SurveyApp/component";
 import SurveyData from "./SurveyApp/survey.json";
 import { Link } from "react-router-dom";
 
-const App = (props) => {
+const App = () => {
   return (
     <>
       <div className="container">
